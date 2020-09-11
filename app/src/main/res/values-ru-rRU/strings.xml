@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MSSv07092020</string>
+    <string name="name_hint">Имя</string>
+    <string name="surname_hint">Фамилия</string>
+    <string name="btn_get_res_text">Результат</string>
+    <string name="top_menu_item1_title">Показать список</string>
+    <string name="hello_blank_fragment">Хеллоу</string>
+</resources>
