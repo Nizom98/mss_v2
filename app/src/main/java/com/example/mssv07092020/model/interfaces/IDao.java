@@ -32,4 +32,5 @@ public interface IDao {
 
     @Query("SELECT * FROM notes ORDER BY id DESC")
     List<Note> getAllNotes();
+
 }
