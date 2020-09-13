@@ -22,23 +22,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/surname_hint"
+                android:hint="@string/name_hint"
                 android:inputType="textPersonName"
-                android:text="@={lab1VM.surname}" />
+                android:text="@={lab1VM.name}"
+                android:autofillHints="@string/surname_hint" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/name_hint"
+                android:hint="@string/surname_hint"
                 android:inputType="textPersonName"
-                android:text="@={lab1VM.name}" />
+                android:text="@={lab1VM.surname}"
+                android:autofillHints="@string/surname_hint"/>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@={lab1VM.result}"/>
 
             <Button
                 android:id="@+id/button"

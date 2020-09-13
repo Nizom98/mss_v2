@@ -3,6 +3,7 @@ package com.example.mssv07092020;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.item1:
-        }
+                Intent intent = new Intent(this, MainActivity2.class);
+                startActivity(intent);
+         }
         return super.onOptionsItemSelected(item);
     }
 }

@@ -4,6 +4,11 @@
     <string name="surname_hint">Enter surname</string>
     <string name="btn_get_res_text">Result</string>
     <string name="top_menu_item1_title">Show list</string>
+    <string name="res_prefix">You: </string>
+    <string name="empty_name">Name cannot be empty</string>
+    <string name="empty_surname">Surname cannot be empty</string>
+    <string name="empty_field">Name or Surname could not be empty</string>
+    <string name="exists_data">Such data already exists</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

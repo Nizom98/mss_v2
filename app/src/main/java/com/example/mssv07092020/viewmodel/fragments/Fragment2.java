@@ -65,10 +65,10 @@ public class Fragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Fragment2Binding fragment2Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_2, null, false);
+        Fragment2Binding fragment2Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_1, null, false);
         View view = fragment2Binding.getRoot();
-        fragment2Binding.setLab1VM(new Lab1VM(getActivity(), new Lab1()));
-        inflater.inflate(R.layout.fragment_2,container, false);
+        /*fragment2Binding.setLab1VM(new Lab1VM(getActivity(), new Lab1()));
+        inflater.inflate(R.layout.fragment_1,container, false);*/
         return fragment2Binding.getRoot();
     }
 }

@@ -6,4 +6,9 @@
     <string name="btn_get_res_text">Результат</string>
     <string name="top_menu_item1_title">Показать список</string>
     <string name="hello_blank_fragment">Хеллоу</string>
+    <string name="res_prefix">"Вы: "</string>
+    <string name="empty_name">Имя не может быть пустым</string>
+    <string name="empty_surname">Фамилия не может быть пустым</string>
+    <string name="empty_field">Имя или Фамилия не могут быть пустыми</string>
+    <string name="exists_data">Такие данные уже сушествуют</string>
 </resources>

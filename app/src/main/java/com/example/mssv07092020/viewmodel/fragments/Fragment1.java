@@ -68,6 +68,6 @@ public class Fragment1 extends Fragment {
         View view = fragment1Binding.getRoot();
         fragment1Binding.setLab1VM(new Lab1VM(getActivity(), new Lab1()));
         inflater.inflate(R.layout.fragment_1,container, false);
-        return fragment1Binding.getRoot();
+        return view; //fragment1Binding.getRoot()
     }
 }
