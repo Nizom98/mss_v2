@@ -21,6 +21,9 @@ public interface IDao {
     @Query("DELETE FROM notes")
     void deleteAllNotes();
 
+    /*@Query("DROP TABLE IF EXISTS notes")
+    void deleteTable();*/
+
     @Delete
     void deleteNote(Note note);
 

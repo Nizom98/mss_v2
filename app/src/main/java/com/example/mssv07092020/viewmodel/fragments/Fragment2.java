@@ -1,10 +1,12 @@
 package com.example.mssv07092020.viewmodel.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ public class Fragment2 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private Lab1VM lab1VM;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,10 +68,19 @@ public class Fragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Fragment2Binding fragment2Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_1, null, false);
+        Fragment2Binding fragment2Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_2, null, false);
         View view = fragment2Binding.getRoot();
-        /*fragment2Binding.setLab1VM(new Lab1VM(getActivity(), new Lab1()));
-        inflater.inflate(R.layout.fragment_1,container, false);*/
+        lab1VM = new Lab1VM(getActivity(), new Lab1(), getActivity().getPreferences(Context.MODE_PRIVATE));
+        lab1VM.loadData("2");
+        fragment2Binding.setLab1VM(lab1VM);
+        inflater.inflate(R.layout.fragment_2,container, false);
         return fragment2Binding.getRoot();
+    }
+
+
+    @Override
+    public void onPause() {
+        lab1VM.saveData("2");
+        super.onPause();
     }
 }

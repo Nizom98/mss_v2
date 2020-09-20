@@ -11,4 +11,11 @@
     <string name="empty_surname">Фамилия не может быть пустым</string>
     <string name="empty_field">Имя или Фамилия не могут быть пустыми</string>
     <string name="exists_data">Такие данные уже сушествуют</string>
+    <string name="btn_text_change_fragment">Поменять</string>
+    <string name="btn_text_get_concat">Склеить</string>
+    <string name="btn_text_get_mix">Перемешать</string>
+    <string name="top_menu_item2_title">Смена фрагментов</string>
+    <string name="btn_text_open_link">Открыть</string>
+    <string name="text_total_count_prefix">Результат подсчета:</string>
+    <string name="hint_et_open_link">Вставьте ссылку</string>
 </resources>

@@ -1,10 +1,12 @@
 package com.example.mssv07092020.viewmodel.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,7 @@ public class Fragment1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private  Lab1VM lab1VM;
 
     public Fragment1() {
         // Required empty public constructor
@@ -66,8 +69,17 @@ public class Fragment1 extends Fragment {
                              Bundle savedInstanceState) {
         Fragment1Binding fragment1Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_1, null, false);
         View view = fragment1Binding.getRoot();
-        fragment1Binding.setLab1VM(new Lab1VM(getActivity(), new Lab1()));
+        lab1VM = new Lab1VM(getActivity(), new Lab1(), getActivity().getPreferences(Context.MODE_PRIVATE));
+        lab1VM.loadData("1");
+        fragment1Binding.setLab1VM(lab1VM);
         inflater.inflate(R.layout.fragment_1,container, false);
         return view; //fragment1Binding.getRoot()
+    }
+
+    @Override
+    public void onPause() {
+        Log.d("SATATE:", "ON_PAUSE");
+        lab1VM.saveData("1");
+        super.onPause();
     }
 }

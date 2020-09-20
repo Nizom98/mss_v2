@@ -4,11 +4,18 @@
     <string name="surname_hint">Enter surname</string>
     <string name="btn_get_res_text">Result</string>
     <string name="top_menu_item1_title">Show list</string>
+    <string name="top_menu_item2_title">Change fragments</string>
     <string name="res_prefix">You: </string>
     <string name="empty_name">Name cannot be empty</string>
     <string name="empty_surname">Surname cannot be empty</string>
     <string name="empty_field">Name or Surname could not be empty</string>
     <string name="exists_data">Such data already exists</string>
+    <string name="btn_text_change_fragment">Change</string>
+    <string name="btn_text_get_concat">Concationation</string>
+    <string name="btn_text_get_mix">Get mix</string>
+    <string name="btn_text_open_link">Open</string>
+    <string name="text_total_count_prefix">Count result:</string>
+    <string name="hint_et_open_link">Type link</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

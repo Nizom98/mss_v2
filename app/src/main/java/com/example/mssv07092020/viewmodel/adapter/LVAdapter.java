@@ -48,6 +48,7 @@ public class LVAdapter extends BaseAdapter {
         Lab1 lab1 = (Lab1) getItem(i);
         ((TextView) view.findViewById(R.id.tv_name)).setText(lab1.getName());
         ((TextView) view.findViewById(R.id.tv_surname)).setText(lab1.getSurname());
+        ((TextView) view.findViewById(R.id.tv_result)).setText(lab1.getTotal());
         return  view;
     }
 }

@@ -49,8 +49,8 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{()->lab1VM.onBtnGetResClicked()}"
-                android:text="@string/btn_get_res_text" />
+                android:onClick="@{()->lab1VM.onBtnGetConcatClicked()}"
+                android:text="@string/btn_text_get_concat" />
         </LinearLayout>
 
     </FrameLayout>

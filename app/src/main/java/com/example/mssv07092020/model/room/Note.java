@@ -15,9 +15,13 @@ public class Note {
     @ColumnInfo(name = "surname")
     private String surname;
 
-    public Note(String name, String surname) {
+    @ColumnInfo(name = "total")
+    private String total;
+
+    public Note(String name, String surname, String total) {
         this.name = name;
         this.surname = surname;
+        this.total = total;
     }
 
     public void setId(int id) {
@@ -35,4 +39,6 @@ public class Note {
     public String getSurname() {
         return surname;
     }
+
+    public String getTotal() { return total; }
 }
