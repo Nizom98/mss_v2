@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, MainActivity3.class);
                 startActivity(intent);
                 break;
+            case R.id.open_anim:
+                startActivity(new Intent(this, AnimActivity.class));
          }
         return super.onOptionsItemSelected(item);
     }

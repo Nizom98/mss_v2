@@ -18,4 +18,9 @@
     <string name="btn_text_open_link">Открыть</string>
     <string name="text_total_count_prefix">Результат подсчета:</string>
     <string name="hint_et_open_link">Вставьте ссылку</string>
+    <string name="top_menu_open_anim_act">Окно анимации</string>
+    <string name="btn_text_anim_rotate">Вращение</string>
+    <string name="btn_text_anim_scale">Масштаб</string>
+    <string name="btn_text_anim_tarnsfer">Премещение</string>
+    <string name="btn_text_anim_transpar">Видимость</string>
 </resources>

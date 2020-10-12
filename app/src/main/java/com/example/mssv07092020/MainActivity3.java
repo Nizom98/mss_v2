@@ -1,9 +1,11 @@
 package com.example.mssv07092020;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mssv07092020.databinding.ActivityMain3Binding;
+import com.example.mssv07092020.model.services.ServiceCount;
+import com.example.mssv07092020.model.services.ServiceCounter;
 import com.example.mssv07092020.viewmodel.Activity3VM;
 import com.example.mssv07092020.viewmodel.fragments.Fragment1;
 import com.example.mssv07092020.viewmodel.fragments.Fragment2;
@@ -34,18 +38,22 @@ import java.io.InputStreamReader;
 
 public class MainActivity3 extends AppCompatActivity {
 
-    Button btn, btn_open;
+
+    public static final String PENDING_INTENT_KEY = "pending_intent";
+    public static final String COUNTER_ANSWER_KEY = "pending_intent";
+
+    private static final int COUNTER_SERVICE = 1;
+
+    public static final int COUNTER_START = 1;
+    public static final int COUNTER_ANSWER = 2;
+    public static final int COUNTER_FINISH = 3;
+
+    Button btn;
     Boolean isFrag1 = true;
     Fragment1 fragment1;
     Fragment2 fragment2;
     EditText link;
     TextView tv_total_count;
-    //BackgroundTasks backTask = null;
-
-
-
-    SharedPreferences shPref;
-
     private ActivityMain3Binding activityMain3Binding;
     private Activity3VM activity3VM;
 
@@ -72,7 +80,6 @@ public class MainActivity3 extends AppCompatActivity {
         activity3VM = new Activity3VM(this, query);
         activityMain3Binding.setAct3vm(activity3VM );
 
-
         btn = findViewById(R.id.btn_change_fragment);
         tv_total_count = findViewById(R.id.tv_count);
        // btn_open = findViewById(R.id.btn_open_link);
@@ -88,14 +95,6 @@ public class MainActivity3 extends AppCompatActivity {
                 isFrag1 = !isFrag1;
             }
         });
-        LongAndComplicatedTask longTask = new LongAndComplicatedTask(); // Создаем экземпляр
-        longTask.execute(); // запускаем
-        //longTask.cancel(true);
-
-        /*saveToTxt("19981120");
-        String s = readfromtxt();
-        Log.d("TXTX_DATA", s);
-        Toast.makeText(this, s, Toast.LENGTH_LONG).show();*/
     }
 
     private  void showFragmen1(){
@@ -110,117 +109,36 @@ public class MainActivity3 extends AppCompatActivity {
         transaction.commit();
     }
 
-    public String countF(){
-        int i = 0;
-        for(; i < 10; ++i){
-            Log.d("COUNT_FUNC","ITEM: " + (i + 1));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+
+    public void startCountClicked(){
+        Log.d("MA3", "startCountClicked");
+        PendingIntent pendingIntent = createPendingResult(COUNTER_SERVICE, new Intent(), 0);
+        Intent intent = new Intent(this, ServiceCount.class);
+        intent.putExtra(PENDING_INTENT_KEY, pendingIntent);
+        startService(intent);
+    }
+
+    public void stopService(){
+        Log.d("MA3", "stopService");
+        Intent intent = new Intent(this, ServiceCount.class);
+        stopService(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == COUNTER_SERVICE) {
+            int counter = data.getIntExtra(COUNTER_ANSWER_KEY, 0);
+            switch (resultCode) {
+                case COUNTER_ANSWER:
+                    Log.d("MA3", "onActivityResult");
+                    Toast.makeText(this, String.valueOf(counter), Toast.LENGTH_SHORT).show();
+                    break;
+                case COUNTER_FINISH:
+                    activity3VM.saveTotalCount(String.valueOf(counter));
+                    break;
             }
         }
-        return i + "";
-    }
-
-    class LongAndComplicatedTask extends AsyncTask<Void, Void, String> {
-        @Override
-        protected String doInBackground(Void... noargs) {
-            return countF();
-        }
-        @Override
-        protected void onPostExecute(String result) {
-            activity3VM.saveTotalCount(result);
-            //save2txt(result);
-            String s = activity3VM.getTotalCount();//readfromtxt();
-            Log.d("COUNT::::", s);//activity3VM.getTotalCount()
-            tv_total_count.setText(getResources().getString(R.string.text_total_count_prefix) + s);
-            //Toast.makeText(this, s, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void save2txt(String s){
-        try {
-            FileOutputStream fos = openFileOutput("totalCount1.txt", MODE_PRIVATE);
-            fos.write(s.getBytes());
-            fos.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    final static String fileName = "data.txt";
-
-    public void saveToTxt(String s){
-        try {
-            File file = new File(this.getFilesDir()+ fileName);
-            if (!file.exists()) {
-                Log.d("TAG4", "CREATING_FILE");
-                file.createNewFile();
-            }
-            FileOutputStream fileOutputStream = new FileOutputStream(file,false);
-            fileOutputStream.write(s.getBytes());
-
-        }  catch(FileNotFoundException ex) {
-            Log.d("TAG1", ex.getMessage());
-        }  catch(IOException ex) {
-            Log.d("TAG2", ex.getMessage());
-        }
-    }
-
-    public String readfromtxt(){
-        String ret = "";
-        String line = "";
-
-        try {
-            FileInputStream fileInputStream = new FileInputStream (new File(this.getFilesDir() + fileName));
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            StringBuilder stringBuilder = new StringBuilder();
-
-            while ( (line = bufferedReader.readLine()) != null )
-            {
-                stringBuilder.append(line);
-            }
-            fileInputStream.close();
-            line = stringBuilder.toString();
-
-            bufferedReader.close();
-        }
-        catch(FileNotFoundException ex) {
-            Log.d("TAG3", ex.getMessage());
-        }
-        catch(IOException ex) {
-            Log.d("TAG4", ex.getMessage());
-        }
-        return line;
-    }
-
-    public class BackgroundTasks extends  Thread {
-        int count;
-        int interval;
-        TextView tv;
-        BackgroundTasks(int count, int interval, TextView textView){
-            this.count = count;
-            this.interval = interval;
-            this.tv = textView;
-        }
-        @Override
-        public void run() {
-            for(int i = 0; i < count; ++i){
-
-                Log.d("COUNT_T","Count: " + (i + 1));
-                try {
-                    Thread.sleep(interval);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            super.run();
-        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

@@ -9,4 +9,8 @@
         android:id="@+id/item2"
         android:icon="@drawable/ic_icon"
         android:title="@string/top_menu_item2_title"/>
+    <item
+        android:id="@+id/open_anim"
+        android:icon="@drawable/ic_icon"
+        android:title="@string/top_menu_open_anim_act"/>
 </menu>

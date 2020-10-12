@@ -9,7 +9,7 @@ public class Note {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "name")
+    //@ColumnInfo(name = "name")
     private String name;
 
     @ColumnInfo(name = "surname")

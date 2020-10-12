@@ -98,8 +98,6 @@ public class Repo {
     }
 
     public String getTotalCount(){
-        /*byte[] bytes =  txtFile.read();
-        String s = new String(bytes);*/
         Log.d("COUNT_TEST_SAVI2", "f");
         return txtFile.read();
     }

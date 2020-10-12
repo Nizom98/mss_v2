@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mssv07092020.R;
 import com.example.mssv07092020.model.Lab1;
@@ -45,10 +47,23 @@ public class LVAdapter extends BaseAdapter {
         if(view == null){
             view = linf.inflate(R.layout.list_row, viewGroup, false);
         }
-        Lab1 lab1 = (Lab1) getItem(i);
-        ((TextView) view.findViewById(R.id.tv_name)).setText(lab1.getName());
-        ((TextView) view.findViewById(R.id.tv_surname)).setText(lab1.getSurname());
-        ((TextView) view.findViewById(R.id.tv_result)).setText(lab1.getTotal());
+        final Lab1 lab1 = (Lab1) getItem(i);
+        final TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
+        tv_name.setText(lab1.getName());
+        final TextView tv_surname =(TextView) view.findViewById(R.id.tv_surname);
+        tv_surname.setText(lab1.getSurname());
+        final TextView tv_res =(TextView) view.findViewById(R.id.tv_result);
+        tv_res.setText(lab1.getTotal());
+        final Button btn = (Button)view.findViewById(R.id.btn_show_toast_res);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv_surname.setVisibility(View.GONE);
+                tv_res.setVisibility(View.GONE);
+                btn.setVisibility(View.GONE);
+                Toast.makeText(ctx, lab1.getTotal(), Toast.LENGTH_SHORT).show();
+            }
+        });
         return  view;
     }
 }

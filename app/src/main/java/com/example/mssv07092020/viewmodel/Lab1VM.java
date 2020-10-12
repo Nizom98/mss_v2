@@ -1,5 +1,6 @@
 package com.example.mssv07092020.viewmodel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.service.autofill.SaveRequest;
@@ -49,36 +50,6 @@ public class Lab1VM extends BaseObservable {
         result.setValue("RESULT_FRAG_!");
     }
 
-    public boolean isInsSuccess(Lab1 lab1){
-        /*int res = repo.addNote(lab1);
-        if(res != Repo.INSERTED){
-            if( res == Repo.EMPTY_FIELDS){
-                Toast.makeText(ctx, ctx.getResources().getString(R.string.empty_field), Toast.LENGTH_LONG).show();
-            } else if( res == Repo.EXIST_NOTE){
-                Toast.makeText(ctx, ctx.getResources().getString(R.string.exists_data), Toast.LENGTH_LONG).show();
-            }
-            return false;
-        }*/
-        return true;
-    }
-
-    public void onBtnGetResClicked(){
-        //repo.removeAllNotes();
-        //lab1 = new Lab1(name.getValue(), surname.getValue());
-
-        String prefix = ctx.getResources().getString(R.string.res_prefix);
-        result.setValue(lab1.getName() + " " +  lab1.getSurname());
-        /*lab1.setName(name.getValue());
-        lab1.setSurname(surname.getValue());*/
-        name.setValue("");
-        surname.setValue("");
-        notifyPropertyChanged(BR.name);
-        notifyPropertyChanged(BR.surname);
-        notifyPropertyChanged(BR.result);
-        //notifyPropertyChanged(BR.lab1);
-        Toast.makeText(ctx, lab1.getName() + " " + lab1.getSurname(), Toast.LENGTH_LONG).show();
-    }
-
     public String getStringsConcat(String first, String second){
         return first + second;
     }
@@ -123,7 +94,14 @@ public class Lab1VM extends BaseObservable {
         this.surname.setValue(surname);
         String prefix = ctx.getResources().getString(R.string.res_prefix);
         this.result.setValue(res);
+        setActivityTitle(res);
         notifyView();
+    }
+
+    private void setActivityTitle(String s){
+        if(this.ctx == null) return;
+        Activity act = (Activity) this.ctx;
+        act.setTitle(s);
     }
 
     private void notifyView(){
@@ -142,7 +120,6 @@ public class Lab1VM extends BaseObservable {
     }
 
     public void saveData(String fragmentNum){
-
         repo.saveNote2SharedPreferences(new Lab1(name.getValue(), surname.getValue(), result.getValue()), preferences, fragmentNum);
     }
 
